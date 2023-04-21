@@ -1,0 +1,147 @@
+#Video{
+	position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+}
+
+#Btn {
+    width: 200px;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    background: darkgreen;
+    color: white;
+    margin: 2%;
+}
+
+#btnlogin {
+    width: 210px;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    background: darkgreen;
+    color: white;
+    margin: 2%;
+}
+
+#username, #password {
+    width: 190px;
+    font-size: 12px;
+    padding: 10px;
+    border: none;
+    background: lightgrey;
+    color: black;
+    margin: 2%;
+}
+
+#username:focus, #password:focus {
+    background-color: white;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+#Btn:hover, #btnlogin:hover {
+	cursor: pointer;
+    background: green ;
+    color: white;
+}
+
+.content {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    color: black;
+    width: 100%;
+	margin-left:35px
+}
+
+.menu {
+    height: 320px;
+    width: 220px;
+    position: fixed;
+    top: 0;
+	left: 0;
+    background-color: red;
+    opacity: 0.7;
+    padding-top: 20px;
+}
+.menu a {
+    padding: 5px 5px 15px 30px;
+    text-decoration: none;
+    font: 25px Arial;
+    color: yellow;
+    display: block;
+}
+
+.menu a:hover {
+    color: #008080;
+}
+
+
+.login-label {
+    display: inline-block;
+    width: 150px;
+    margin-left: 50px;
+    font-weight: bold;
+}
+
+.login-error {
+    display: inline-block;
+    color: gold;
+    width: 150px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+h1
+{
+	color: purple;
+	font: bold 30px Arial;
+	margin: 0.5%;
+	}
+
+p{
+	color: yellow;
+	font: bold 16px Arial;
+	margin: 0.5%;
+}
+
+:root {
+  --backgroundColor: #232323;
+  --firstColor: #00D69C;
+  --secondColor: #C52AFC;
+  --thirdColor: #FF1F00;
+  --fourthColor: #FFD600;
+  --dropShadowColor: rgba(0, 0, 0, .7);
+}
+
+html,
+body {
+  overflow: hidden;
+  background-color: var(--backgroundColor);
+}
+
+main {
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+}
+
+.blob {
+  margin: auto;
+}
+
+svg {
+  transform-origin: 50% 50%;
+  animation: move 24s ease-in-out infinite;
+}
+
+@keyframes move {
+  0%   { transform: scale(1)   translate(0, 0) rotate(0); fill: var(--firstColor); filter: drop-shadow( 20px 14px 10px var(--dropShadowColor)); }
+  25%  { transform: scale(0.8) translate(5vw, 10vh) rotate(55deg); fill: var(--secondColor); filter: drop-shadow( 14px 14px 6px var(--dropShadowColor)); }
+  50%  { transform: scale(0.6) translate(15vw, 5vh) rotate(180deg); fill: var(--thirdColor); filter: drop-shadow( -16px -16px 16px var(--dropShadowColor)); }
+  75%  { transform: scale(0.8) translate(5vw, 10vh) rotate(55deg); fill: var(--fourthColor); filter: drop-shadow( 14px 14px 6px var(--dropShadowColor)); }
+  100% { transform: scale(1)   translate(0, 0) rotate(0); fill: var(--firstColor); filter: drop-shadow( 20px 14px 10px var(--dropShadowColor)); }
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о товаре</title>
+</head>
+<body>
+
+<form method="get" th:action="@{/index}"  style="display: inline-block">
+    <input type="submit" value="Личный кабинет">
+</form>
+
+<form method="post" th:action="@{/logout}"  style="display: inline-block">
+    <input type="submit" value="Выйти из личного кабинета">
+</form>
+
+<p th:text="'Наименование: ' + ${product.getTitle()}"></p>
+<p th:text="'Категория: ' + ${product.getCategory().getName()}"></p>
+<p th:text="'Описание: ' + ${product.getDescription()}"></p>
+<p th:text="'Цена: ' + ${product.getPrice()}"></p>
+<p th:text="'Склад: ' + ${product.getWarehouse()}"></p>
+<p th:text="'Продавец: ' + ${product.getSeller()}"></p>
+<br>
+
+<div th:each="img : ${product.getImageList()}">
+    <img th:src="'/img/' + ${img.getFileName()}" width="300px">
+</div>
+</body>
+</html>

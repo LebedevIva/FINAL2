@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Пользователи</title>
+</head>
+<body>
+
+<h3>Пользователи</h3>
+
+<form method="get" th:action="@{/admin}"  style="display: inline-block">
+  <input type="submit" value="Личный кабинет">
+</form>
+
+<form method="post" th:action="@{/logout}"  style="display: inline-block">
+  <input type="submit" value="Выйти из личного кабинета">
+</form>
+
+<h3>Список всех пользователей:</h3>
+<div th:each="person : ${persons}">
+  <div style="display: inline-block">
+    <p th:text="'Id: ' + ${person.getId()}"></p>
+    <p th:text="'Пользователь: ' + ${person.getLogin()}"></p>
+    <p th:text="'Пароль: ' + ${person.getPassword()}"></p>
+    <p th:text="'Роль: ' + ${person.getRole()}"></p>
+    <form method="post" th:action="@{/admin/update}" th:object="${person}">
+ <!--     <input type="hidden" th:field="*{id}"> -->
+     <!-- <input type="hidden" name="id" th:value="${person.getid}"> -->
+        <input type="hidden" name="id" th:value="${person.getId()}">
+      <input type="hidden" name="login" th:value="${person.getLogin()}">
+      <input type="hidden" name="password" th:value="${person.getPassword()}">
+      <select name="role">
+        <option value="ROLE_USER">User</option>
+        <option value="ROLE_ADMIN">Admin</option>
+      </select>
+      <br>
+      <input type="submit" value="Изменить">
+    </form>
+  </div>
+  <hr>
+</div>
+
+</body>
+</html>

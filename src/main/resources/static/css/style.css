@@ -1,0 +1,49 @@
+body {
+  background-image: url("./test.jpg");
+  font-family:'Arial', sans-serif;
+  color: grey;
+}
+section {
+  background: white;
+  margin: 0px auto;
+  padding: 25px 0px 0px;
+  text-align: center;
+  width: 500px;
+  height: 740px;
+}
+
+section h1{
+  color: #f08d34;
+  font-size: 65px;
+ }
+
+#login-input {
+  border: 2px solid #b2a9aa;
+  font-size: 14px;
+  margin: 0px 0px 10px;
+  padding: 15px 10px 15px 40px;
+  width: 370px;
+  color: grey;
+}
+
+#password {
+  border: 2px solid #b2a9aa;
+  font-size: 14px;
+  margin: 0px 0px 10px;
+  padding: 15px 10px 15px 40px;
+  width: 370px;
+  color: grey;
+}
+
+input[type="submit"]{
+  background-color: orange;
+  border: 1px solid darkorange;
+  font:  bold 16px Arial;
+  width: 430px;
+  height: 50px;
+  margin-top: 15px;
+}
+
+input[type="submit"]:hover{
+  background: darkorange;
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет администратора</title>
+</head>
+<body>
+  <h3>Личный кабинет администратора</h3>
+
+      <form method="get" th:action="@{/admin/product/add}"  style="display: inline-block">
+          <input type="submit" value="Добавить товар">
+      </form>
+
+      <form method="get" th:action="@{/admin/listOrders}"  style="display: inline-block">
+          <input type="submit" value="Заказы">
+      </form>
+
+      <form method="get" th:action="@{/admin/listPersons}"  style="display: inline-block">
+          <input type="submit" value="Пользователи">
+      </form>
+
+    <form th:method="post" th:action="@{/logout}" style="display: inline-block">
+        <input type="submit" value="Выйти из личного кабинета">
+    </form>
+
+  <form th:method="POST" th:action="@{/product/admsearch}">
+      <fieldset>
+          <legend>Выберите параметры для сортировки, поиска, фильтрации</legend>
+          <br>
+          <label for="search">Поиск по наименованию</label>
+          <input type="search" name="search" th:value="*{value_search}" id="search">
+          <br>
+          <p>Цена, Р</p>
+          <label for="ot">От</label>
+          <input type="text" name="ot" id="ot"  th:value="*{value_ot}">
+          <label for="do">До</label>
+          <input type="text" name="do" id="do" th:value="*{value_do}">
+          <br>
+          <input type="radio" id="ascending_price" name="price" value="ascending_price">
+          <label for="ascending_price">Отсортировать по возрастанию цены</label>
+          <br>
+          <input type="radio" id="descending_price" name="price" value="descending_price">
+          <label for="descending_price">Отсортировать по убыванию цены</label>
+          <br>
+          <p>По категории:</p>
+          <input type="checkbox" id="shoes" name="category" value="shoes">
+          <label for="shoes">Обувь</label>
+          <input type="checkbox" id="materials" name="category" value="cloth">
+          <label for="materials">Одежда</label>
+          <input type="checkbox" id="accessories" name="category" value="accessories">
+          <label for="accessories">Аксессуары</label>
+          <br>
+          <input type="submit" value="Найти">
+      </fieldset>
+  </form>
+
+  <h3>Результат поиска:</h3>
+  <div th:each="product : ${search_product}">
+      <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
+      <br>
+      <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+          <p th:text="'Цена: ' + ${product.getPriceString()}"></p>
+      <div>
+          <form method="get" th:action="@{/admin/product/edit/{id}(id=${product.getId()})}"  style="display: inline-block">
+              <input type="submit" value="Добавить товар">
+          </form>
+          <form method="get" th:action="@{/admin/product/delete/{id}(id=${product.getId()})}"  style="display: inline-block">
+              <input type="submit" value="Удалить товар">
+          </form>
+      </div>
+  </div>
+
+    <h3>Каталог товаров</h3>
+    <hr>
+    <div th:each="product : ${products}">
+        <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
+        <p th:text="'Наименование: ' + ${product.getTitle()}"></p>
+        <p th:text="'Категория: ' + ${product.getCategory().getName()}"></p>
+        <p th:text="'Описание: ' + ${product.getDescription()}"></p>
+        <p th:text="'Цена: ' + ${product.getPriceString()}"></p>
+        <p th:text="'Склад: ' + ${product.getWarehouse()}"></p>
+        <p th:text="'Продавец: ' + ${product.getSeller()}"></p>
+        <br>
+
+        <div>
+            <form method="get" th:action="@{/admin/product/edit/{id}(id=${product.getId()})}"  style="display: inline-block">
+                <input type="submit" value="Редактировать товар">
+            </form>
+            <form method="get" th:action="@{/admin/product/delete/{id}(id=${product.getId()})}"  style="display: inline-block">
+                <input type="submit" value="Удалить товар">
+            </form>
+        </div>
+        <hr>
+    </div>
+</body>
+</html>

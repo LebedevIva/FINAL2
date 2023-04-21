@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Смена статуса заказа</title>
+</head>
+<body>
+  <h3>Смена статуса заказа</h3>
+
+  <div>
+      <form method="get" th:action="@{/admin/listOrders}"  style="display: inline-block">
+          <input type="submit" value="Заказы">
+      </form>
+      <form method="get" th:action="@{/admin}"  style="display: inline-block">
+          <input type="submit" value="Личный кабинет">
+      </form>
+  </div>
+  <form th:method="post" th:action="@{/admin/listOrders/edit/{id}(id=${editOrder.getId()})}" th:object="${editOrder}">
+      <p th:text="'Заказ №: ' + ${editOrder.getNumber()}"></p>
+      <label for="status">Изменить статус заказа:</label>
+      <select name="status" th:field="*{status}" id="status">
+          <div th:each="element : ${status}">
+              <option th:text="${element}" th:value="${element}"></option>
+          </div>
+      </select>
+      <br>
+      <input type="submit" value="Изменить">
+  </form>
+</body>
+</html>

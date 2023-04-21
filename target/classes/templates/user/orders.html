@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказы</title>
+</head>
+<body>
+    <h3>Мои заказы</h3>
+
+    <form method="get" th:action="@{/index}"  style="display: inline-block">
+        <input type="submit" value="Личный кабинет">
+    </form>
+
+    <form method="get" th:action="@{/cart}"  style="display: inline-block">
+        <input type="submit" value="Корзина">
+    </form>
+
+    <form method="post" th:action="@{/logout}"  style="display: inline-block">
+        <input type="submit" value="Выйти из личного кабинета">
+    </form>
+    <hr>
+    <div th:each="order : ${orders}">
+        <div style="display: inline-block">
+            <h3 th:text="'Заказ № ' + ${order.getNumber()}"></h3>
+            <img th:src="'/img/' + ${order.getProduct().imageList[0].getFileName()}" width="150px">
+        </div>
+        <div style="display: inline-block">
+            <p th:text="'Наименование: ' + ${order.getProduct().getTitle()}"></p>
+            <p th:text="'Количество: ' + ${order.getCount()}"></p>
+            <p th:text="'Цена: ' + ${order.getPrice()}"></p>
+            <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy hh:mm:ss')}"></p>
+            <p th:text="'Статус: ' + ${order.getStatus()}"></p>
+        </div>
+        <hr>
+    </div>
+</body>
+</html>

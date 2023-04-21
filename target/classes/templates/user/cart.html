@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+</head>
+<body>
+  <h3>Корзина товаров</h3>
+
+  <form method="get" th:action="@{/index}"  style="display: inline-block">
+      <input type="submit" value="Личный кабинет">
+  </form>
+
+  <form method="get" th:action="@{/orders}"  style="display: inline-block">
+      <input type="submit" value="Заказы">
+  </form>
+
+  <form method="post" th:action="@{/logout}"  style="display: inline-block">
+      <input type="submit" value="Выйти из личного кабинета">
+  </form>
+
+
+  <div th:each="product : ${cart_product}">
+  <br>
+  <hr>
+      <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
+      <br>
+      <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+      <div>
+          <p th:text="'Цена: ' + ${product.getPrice()}" style="display: inline-block"></p>
+
+          <form method="get" th:action="@{/cart/delete/{id}(id=${product.getId()})}"  style="display: inline-block">
+              <input type="submit" value="Удалить">
+          </form>
+      </div>
+  </div>
+    <hr>
+    <h3 th:text="'Итоговая цена: ' + ${price}"></h3>
+  <form method="get" th:action="@{/order/create}"  style="display: inline-block">
+      <input type="submit" value="Оформить заказ">
+  </form>
+
+</body>
+</html>

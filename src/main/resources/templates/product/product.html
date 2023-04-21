@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Список товаров</title>
+</head>
+<body>
+
+<form th:action="@{auth/login}"  style="display: inline-block">
+    <input type="submit" value="На главную">
+</form>
+
+<form method="get" th:action="@{/auth/registration}"  style="display: inline-block">
+  <input type="submit" value="Регистрация">
+</form>
+
+<form th:method="post" th:action="@{/product/searching}">
+
+
+    <fieldset>
+        <legend>Выберите параметры для сортировки, поиска, фильтрации</legend>
+        <br>
+        <label for="search">Поиск по наименованию</label>
+        <input type="search" name="search" th:value="*{value_search}" id="search">
+        <br>
+        <p>Цена, Р</p>
+        <label for="ot">От</label>
+        <input type="text" name="ot" id="ot"  th:value="*{value_ot}">
+        <label for="do">До</label>
+        <input type="text" name="do" id="do" th:value="*{value_do}">
+        <br>
+        <input type="radio" id="ascending_price" name="price" value="ascending_price">
+        <label for="ascending_price">Отсортировать по возрастанию цены</label>
+        <br>
+        <input type="radio" id="descending_price" name="price" value="descending_price">
+        <label for="descending_price">Отсортировать по убыванию цены</label>
+        <br>
+        <p>По категории:</p>
+        <input type="checkbox" id="shoes" name="category" value="shoes">
+        <label for="shoes">Обувь</label>
+        <input type="checkbox" id="cloth" name="category" value="cloth">
+        <label for="cloth">Одежда</label>
+        <input type="checkbox" id="accessories" name="category" value="accessories">
+        <label for="accessories">Аксессуары</label>
+        <br>
+        <input type="submit" value="Найти">
+    </fieldset>
+</form>
+<h3>Результат поиска:</h3>
+<div th:each="product : ${search_product}">
+    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
+    <br>
+    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+    <p th:text="'Цена: ' + ${product.getPriceString()}"></p>
+</div>
+<hr>
+  <h3>Доступные товары</h3>
+    <div th:each="product : ${products}">
+        <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
+        <br>
+        <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}" id="title"></a>
+        <p th:text="'Цена: ' + ${product.getPriceString()}"></p>
+    </div>
+</body>
+</html>
